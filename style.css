@@ -1,0 +1,313 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #f0f4f8;
+  color: #333;
+  padding: 20px;
+}
+
+/* Encabezado */
+.app-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.app-header h1 {
+  color: #125173;
+}
+
+.app-header p {
+  color: #666;
+}
+
+/* Toggle Vistas */
+.view-toggle-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.toggle-btn {
+  padding: 10px 20px;
+  border: 2px solid #125173;
+  background-color: white;
+  color: #125173;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.2s ease;
+}
+
+.toggle-btn.active, .toggle-btn:hover {
+  background-color: #125173;
+  color: white;
+}
+
+.view-section {
+  display: none;
+}
+
+.view-section.active {
+  display: block;
+}
+
+/* Día a Día Card */
+.day-card-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.nav-arrow {
+  background-color: #125173;
+  border: none;
+  width: 50px;
+  height: 120px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+  flex-shrink: 0;
+}
+
+.nav-arrow:hover {
+  background-color: #0c3952;
+}
+
+.nav-arrow svg {
+  fill: white;
+  width: 36px;
+  height: 36px;
+}
+
+.day-card {
+  background-color: #8c9ba5;
+  border: 2px solid #2c3e50;
+  border-radius: 8px;
+  width: 100%;
+  padding: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.day-card-header {
+  background-color: #a3b1bc;
+  border: 1px solid #2c3e50;
+  padding: 10px;
+  text-align: center;
+  margin-bottom: 15px;
+  border-radius: 4px;
+}
+
+.day-card-header h2 {
+  font-size: 1.3rem;
+  color: #000;
+}
+
+.activities-table-container {
+  background-color: #125173;
+  border-radius: 20px;
+  padding: 20px 15px;
+  min-height: 250px;
+  margin-bottom: 20px;
+}
+
+.activities-table {
+  width: 100%;
+  border-collapse: collapse;
+  color: white;
+}
+
+.activities-table th {
+  border-bottom: 2px solid #ffffff;
+  padding: 8px;
+  text-align: left;
+}
+
+.activities-table td {
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+  padding: 10px 8px;
+  font-size: 0.95rem;
+}
+
+.card-footer-buttons {
+  background-color: #125173;
+  padding: 12px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* Botones */
+.btn {
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: opacity 0.2s;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+.btn-action {
+  background-color: white;
+  color: #000;
+}
+
+.btn-dark {
+  background-color: #125173;
+  color: white;
+  padding: 12px 8px;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.btn-delete {
+  background-color: #e74c3c;
+  color: white;
+  padding: 4px 8px;
+  font-size: 0.8rem;
+  border-radius: 3px;
+}
+
+/* Vista Semanal */
+.week-grid-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1100px;
+  margin: 0 auto 20px auto;
+}
+
+.week-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 15px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.week-day-column {
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 12px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.week-day-column.active-day {
+  border: 2px solid #125173;
+  background-color: #f7fafc;
+}
+
+.week-day-column h3 {
+  border-bottom: 2px solid #125173;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+  color: #125173;
+}
+
+.week-item {
+  background-color: #eef6fb;
+  border-left: 4px solid #125173;
+  padding: 8px;
+  margin-bottom: 8px;
+  border-radius: 0 4px 4px 0;
+  font-size: 0.85rem;
+}
+
+.week-item.fixed-item {
+  background-color: #fff3cd;
+  border-left-color: #ffc107;
+}
+
+.week-item .title {
+  font-weight: bold;
+}
+
+.week-item .time {
+  color: #666;
+  font-size: 0.8rem;
+}
+
+/* Modal */
+.modal-backdrop {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 10px;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 800px;
+  width: 100%;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.modal-table-responsive {
+  overflow-x: auto;
+  margin-bottom: 20px;
+}
+
+.modal-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #000;
+}
+
+.modal-table th, .modal-table td {
+  border: 1px solid #000;
+  padding: 8px;
+  text-align: center;
+}
+
+.modal-table input, .modal-table select {
+  width: 100%;
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.modal-actions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 10px;
+}

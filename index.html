@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Horario Diario</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Encabezado Principal -->
+  <header class="app-header">
+    <h1>Planificador de Horario Diario</h1>
+    <p>Organiza tus actividades diarias y rutina fija</p>
+  </header>
+
+  <!-- Navegación de Vistas -->
+  <div class="view-toggle-container">
+    <button id="btnViewDay" class="toggle-btn active" onclick="switchView('day')">Vista Día a Día</button>
+    <button id="btnViewWeek" class="toggle-btn" onclick="switchView('week')">Vista Semanal Completa</button>
+  </div>
+
+  <!-- VISTA DÍA A DÍA -->
+  <div id="dayView" class="view-section active">
+    <div class="day-card-wrapper">
+
+      <button class="nav-arrow left" onclick="changeDay(-1)" title="Día Anterior">
+        <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+      </button>
+
+      <div class="day-card">
+        <div class="day-card-header">
+          <h2 id="currentDayTitle">Día: Lunes</h2>
+        </div>
+
+        <div class="activities-table-container">
+          <table class="activities-table">
+            <thead>
+              <tr>
+                <th>Actividad</th>
+                <th>Duración</th>
+                <th>Distribución</th>
+                <th>Detalle</th>
+                <th>Acción</th>
+              </tr>
+            </thead>
+            <tbody id="activitiesList">
+              <!-- Se llena dinámicamente con JS -->
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card-footer-buttons">
+          <button class="btn btn-action" onclick="openModal()">Agregar actividad</button>
+          <button class="btn btn-action" onclick="switchView('week')">Ver horario</button>
+        </div>
+      </div>
+
+      <button class="nav-arrow right" onclick="changeDay(1)" title="Día Siguiente">
+        <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+      </button>
+
+    </div>
+  </div>
+
+  <!-- VISTA SEMANAL -->
+  <div id="weekView" class="view-section">
+    <div class="week-grid-header">
+      <h2>Horario Semanal Completo</h2>
+      <button class="btn btn-action" onclick="openModal()">+ Agregar Nueva Actividad</button>
+    </div>
+    <div class="week-grid" id="weekGrid">
+      <!-- Se genera dinámicamente con JS -->
+    </div>
+  </div>
+
+  <!-- MODAL / FORMULARIO -->
+  <div id="activityModal" class="modal-backdrop">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modalTitle">Agregar actividad</h3>
+        <button class="close-btn" onclick="closeModal()">&times;</button>
+      </div>
+
+      <form id="activityForm" onsubmit="handleFormSubmit(event)">
+        <input type="hidden" id="editIndex" value="-1">
+
+        <div class="modal-table-responsive">
+          <table class="modal-table">
+            <thead>
+              <tr>
+                <th>Día</th>
+                <th>Actividad</th>
+                <th>Horas</th>
+                <th>Minutos</th>
+                <th>Distribución</th>
+                <th>Detalles</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <select id="formDia" required>
+                    <option value="Lunes">Lunes</option>
+                    <option value="Martes">Martes</option>
+                    <option value="Miércoles">Miércoles</option>
+                    <option value="Jueves">Jueves</option>
+                    <option value="Viernes">Viernes</option>
+                    <option value="Sábado">Sábado</option>
+                    <option value="Domingo">Domingo</option>
+                  </select>
+                </td>
+                <td><input type="text" id="formActividad" placeholder="Ej: Clases" required></td>
+                <td><input type="number" id="formHoras" min="0" max="23" value="1" required></td>
+                <td><input type="number" id="formMinutos" min="0" max="59" value="0" required></td>
+                <td><input type="text" id="formDistribucion" placeholder="Ej: En la mañana y tarde"></td>
+                <td><input type="text" id="formDetalles" placeholder="Ej: Ir a la universidad"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="modal-actions-grid">
+          <button type="button" class="btn btn-dark" onclick="saveActivity(false)">Acomodar en el horario</button>
+          <button type="button" class="btn btn-dark" onclick="resetForm()">Borrar actividades</button>
+          <button type="button" class="btn btn-dark" onclick="saveActivity(false)">Guardar</button>
+          <button type="button" class="btn btn-dark" onclick="saveActivity(true)">Guardar como actividad diaria fija</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Archivo JavaScript cargado al final -->
+  <script src="script.js"></script>
+</body>
+</html>
