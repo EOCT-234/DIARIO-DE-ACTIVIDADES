@@ -136,7 +136,7 @@ function saveActivity(isFixedDaily) {
   }
 
   if (isFixedDaily) {
-    // Si se guarda como "actividad diaria fija", se replica en todos los días de la semana
+    // Replica la actividad fija en todos los días de la semana
     daysOfWeek.forEach(dayName => {
       activities.push({
         id: Date.now() + Math.random(),
@@ -169,10 +169,17 @@ function saveActivity(isFixedDaily) {
   closeModal();
 }
 
-// Borrar Actividad Individual
+// Borrar Actividad Individual con confirmación previo
 function deleteActivity(id) {
-  activities = activities.filter(a => a.id !== id);
-  saveToStorage();
-  renderDayView();
-  renderWeekView();
+  const activityToDelete = activities.find(a => a.id === id);
+  const nombreActividad = activityToDelete ? `"${activityToDelete.actividad}"` : "esta actividad";
+
+  const confirmar = confirm(`¿Estás seguro de que deseas borrar ${nombreActividad}?`);
+
+  if (confirmar) {
+    activities = activities.filter(a => a.id !== id);
+    saveToStorage();
+    renderDayView();
+    renderWeekView();
+  }
 }
